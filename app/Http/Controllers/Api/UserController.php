@@ -74,9 +74,9 @@ class UserController extends Controller
 
         $data = array(
             'user'=> $user,
-            //'token' => $token,
-            //'type' => 'bearer', // you can ommit this
-            //'expires' => auth('api')->factory()->getTTL() * 60, // time to expiration
+            'token' => $token,
+            'type' => 'bearer', // you can ommit this
+            'expires' => auth('api')->factory()->getTTL() * 6000000000, // time to expiration
         );
 
         return BergUtils::return_types(200,'Token successfully Generated', $data);
