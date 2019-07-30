@@ -9,6 +9,9 @@ use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Response;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Validator;
+use Tymon\JWTAuth\Facades\JWTAuth;
 
 class UserController extends Controller
 {
@@ -29,6 +32,43 @@ class UserController extends Controller
     }
 
 
+    public function register(Request $request)
+    {
+        $validator = Validator::make($request->all(), [
+            'name' => 'required|string|max:255',
+            'email' => 'required|string|email|max:255|unique:users',
+            'password' => 'required|string|min:6|confirmed',
+        ]);
+
+        if($validator->fails()){
+            return response()->json($validator->errors()->toJson(), 400);
+        }
+
+        $user = User::create([
+            'name' => $request->get('name'),
+            'email' => $request->get('email'),
+            'password' => Hash::make($request->get('password')),
+        ]);
+
+        $token = JWTAuth::fromUser($user);
+
+        $user =array(
+            'bio_details'=>auth('api')->user(),
+            'permissions'=>BergUtils::getUserPermissions(auth('api')->user()->id)
+        );
+
+        $data = array(
+            'user'=> $user,
+            'token' => $token,
+            'type' => 'bearer', // you can ommit this
+            'expires' => auth('api')->factory()->getTTL() * 60, // time to expiration
+        );
+
+        return BergUtils::return_types(200,'Token successfully Generated', $data);
+
+
+        //return response()->json(compact('user','token'),201);
+    }
 
     /**
  * Store a newly created resource in storage.

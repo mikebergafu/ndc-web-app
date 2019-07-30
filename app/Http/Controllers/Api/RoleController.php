@@ -20,11 +20,29 @@ class RoleController extends Controller
 
     public function index(Request $request)
     {
-        $roles = Role::orderBy('id','DESC')->paginate(5);
-        return BergUtils::return_types(200,'List of User Roles', $roles);
+        $data = Role::orderBy('id','DESC')->paginate(5);
+        return BergUtils::return_types(200,'List of User Roles', $data);
 
     }
 
+    public function permissions_list()
+    {
+        $data = Permission::orderBy('id','DESC')->paginate(5);
+        return BergUtils::return_types(200,'List of User Role Permission(s)', $data);
+
+    }
+
+    public function viewRolePermissions($role_id)
+    {
+        $data =  BergUtils::getPermissionRole($role_id);
+        return BergUtils::return_types(200,'List of Role Permission(s)', $data);
+    }
+
+    public function assignRolePermissions(Request $request)
+    {
+        $data = Permission::orderBy('id','DESC')->paginate(5);
+        return BergUtils::return_types(200,'List of User Role Permission(s)', $data);
+    }
 
     /**
      * Show the form for creating a new resource.

@@ -34,7 +34,7 @@ Route::group(['prefix' => 'v1'], function () {
         Route::post('authenticate', 'JwtAuthenticateController@authenticate');
 
         Route::group(['middleware' => ['ability:admin,create-users','jwt.auth']], function () {
-            Route::get('users/auth', 'JwtAuthenticateController@index');
+            //Route::get('users/auth', 'JwtAuthenticateController@index');
             //Regions
             Route::post('/regions', 'RegionController@store');
             Route::patch('/regions/{region}', 'RegionController@update');
@@ -43,8 +43,14 @@ Route::group(['prefix' => 'v1'], function () {
             //Users
             Route::resource('/users', 'UserController');
 
+            Route::post('/users/register', 'UserController@register');
+
             //Roles
             Route::resource('/roles', 'RoleController');
+
+            Route::get('/roles/permissions/{role_id}', 'RoleController@viewRolePermissions');
+
+
         });
 
 
