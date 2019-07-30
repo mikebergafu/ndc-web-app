@@ -1,0 +1,65 @@
+Software Requirement and Specification www.wnndc.com or
+www.ndcwesternnorth.com
+I have been appointed as a Deputy Election Director for NDC Western North Region. Our first assignment is to superintend over the upcoming Parliamentary Primaries on 24th August, 2019.
+We are supposed to furnish the Electoral Commission with list of eligible voters for the primaries. Most often, this list is compiled manually using excel template.
+As a matter of urgency, I need a website/database to help me manage the list of the entire executives that are eligible to vote during the upcoming election on 24th of this month.
+
+The main functionalities of the system should include
+i. Registration/Adding of
+a. Regional Executives,
+b. District/Municipal(Constituency) Executives c. Polling Station Executives
+(Essential Registration fields: Name*, DOB*, Voter ID No(Can be use as primary key)*, Tel. No*, Constituency*, Polling Station*, Position* Picture etc)
+ii. Dashboard for the Nine Constituencies in the Western North Should be created by developer OR Regional administrator. The constituencies are
+
+1. SUAMAN CONSTITUENCY
+2. AKONTOMBRA CONSTITUENCY
+3. BIA EAST CONSTITUENCY
+4. BIA WEST CONSTITUENCY
+5. AOWIN CONSTITUENCY
+6. BIBIANI ANHWIASO BEKWAI CONSTITUENCY
+
+7. BODI CONSTITUENCY
+8. JUABOSO CONSTITUENCY
+9. SEFWI WIAWSO CONSTITUENCY
+iii. Ability to search, print and export list of entire Constituency Executives or polling station executives. The list should have the ability to be filtered based on many scenarios eg
+1. All Constituency Chairmen in Western North
+2. All Communication officers within a constituency
+3. All Women organizers within a constituency
+4. All polling Station executives of eg. Asafo D/C JHS Polling
+Station(Code)
+iv. Search, print and export reports of list of Constituency Executives,
+v. Ability to send bulk message to group of selected executives or entire executives in a constituency.
+System Users (Dashboards):
+i. Regional Executives(HR)
+a. Can create and assign user names and password to system users
+b. Can create constituencies
+c. Can send bulk message to selected category of executives
+d. Can register regional executives
+e.
+ii. Constituency Executives dashboard
+a. Can create and assign user names and password to polling stations
+b. Register the constituency executives.
+c. CancreatePOLLINGSTATIONSANDTHEIRCODESforthe
+constituency
+d. Can send bulk message to selected category of executives
+within a constituency(This functionality should be disable now but the regional executives can enable it later)
+
+a. Can search, view, print and export list of Constituency Executives or a polling station executives. The list can be filtered based on so many scenarios eg
+5. All Polling Station Chairmen
+6. All Communication officers within a constituency
+7. All Women organizers with a constituency
+8. All polling Station executives of eg. Asafo D/C JHS Polling
+Station(Code)
+iii. Polling station executive dashboard(Only one user(Chairman/ Secretary)per polling station)
+a. Can register all polling station executives. Polling Station Executives
+are:
+1. Chairman
+2. Secretary
+3. Organiser
+4. Treasurer
+5. Youth Organiser
+6. Women Organiser
+7. Communication officer 8. Opted member 1
+9. Opted member 2
+b. Can view, edit and update the polling station executives list
+Note that this website should be ready and running by Saturday 6th July, 2019
