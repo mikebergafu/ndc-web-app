@@ -49,4 +49,8 @@ class BergUtils
         return $ret;
     }
 
+    public static function getUserPermissions($user_id){
+        $perms
+    }
+
 }
