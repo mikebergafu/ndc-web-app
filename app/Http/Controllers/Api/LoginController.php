@@ -29,6 +29,7 @@ class LoginController extends Controller
 
         $user =array(
             'bio_details'=>auth('api')->user(),
+            'role_details'=> BergUtils::getUserRoles(auth('api')->user()->id),
             'permissions'=>BergUtils::getUserPermissions(auth('api')->user()->id)
         );
 

@@ -3,7 +3,9 @@
 namespace App\Http\Controllers\Api;
 
 use App\Helpers\BergUtils;
+use App\PermissionRole;
 use App\Role;
+use App\RoleUser;
 use App\User;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
@@ -50,18 +52,31 @@ class UserController extends Controller
             'password' => Hash::make($request->get('password')),
         ]);
 
+        $input =array(
+            'roles'=>$request->get('roles')
+        );
+
+
+        foreach($input['roles'] as $role){
+            $data = new RoleUser();
+            $data->user_id = $user->id;
+            $data->role_id = $role['id'];
+            $data->save();
+        }
+
         $token = JWTAuth::fromUser($user);
 
         $user =array(
-            'bio_details'=>auth('api')->user(),
-            'permissions'=>BergUtils::getUserPermissions(auth('api')->user()->id)
+            'bio_details'=>$user,
+            'role_details'=> BergUtils::getUserRoles($user->id),
+            'permissions'=>BergUtils::getUserPermissions($user->id)
         );
 
         $data = array(
             'user'=> $user,
-            'token' => $token,
-            'type' => 'bearer', // you can ommit this
-            'expires' => auth('api')->factory()->getTTL() * 60, // time to expiration
+            //'token' => $token,
+            //'type' => 'bearer', // you can ommit this
+            //'expires' => auth('api')->factory()->getTTL() * 60, // time to expiration
         );
 
         return BergUtils::return_types(200,'Token successfully Generated', $data);

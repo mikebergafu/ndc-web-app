@@ -49,6 +49,7 @@ Route::group(['prefix' => 'v1'], function () {
             Route::resource('/roles', 'RoleController');
 
             Route::get('/roles/permissions/{role_id}', 'RoleController@viewRolePermissions');
+            Route::post('/roles/add-permissions', 'RoleController@assignRolePermissions');
 
 
         });

@@ -60,6 +60,15 @@ class BergUtils
         return $perms;
     }
 
+    public static function getUserRoles($user_id){
+        $perms = DB::table('roles')
+            ->leftJoin('role_user', 'roles.id', 'role_user.role_id')
+            ->where('role_user.user_id',$user_id)
+            ->get();
+
+        return $perms;
+    }
+
     public static function getPermissionRole($role_id){
         $perms = DB::table('permissions')
             ->leftJoin('permission_role', 'permissions.id', 'permission_role.permission_id')

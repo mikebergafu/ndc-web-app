@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Api;
 use App\Helpers\BergUtils;
 use App\Http\Controllers\Controller;
 use App\Permission;
+use App\PermissionRole;
 use App\Role;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
@@ -40,7 +41,20 @@ class RoleController extends Controller
 
     public function assignRolePermissions(Request $request)
     {
-        $data = Permission::orderBy('id','DESC')->paginate(5);
+        $input =array(
+            'role'=>$request->get('role_id'),
+            'permission'=>$request->get('permissions')
+        );
+
+
+        foreach($input['permission'] as $perm){
+            $data = new PermissionRole();
+            $data->permission_id = $perm['id'];
+            $data->role_id = $input['role'];
+            $data->save();
+        }
+
+        //$data = Permission::orderBy('id','DESC')->paginate(5);
         return BergUtils::return_types(200,'List of User Role Permission(s)', $data);
     }
 
