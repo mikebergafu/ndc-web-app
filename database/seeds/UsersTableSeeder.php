@@ -13,7 +13,7 @@ class UsersTableSeeder extends Seeder
         Model::unguard();
 
         // $this->call(UserTableSeeder::class);
-        User::query()->truncate(); // truncate user table each time of seeders run
+        //User::query()->truncate(); // truncate user table each time of seeders run
 
         $users = array(
             [ // create a new user
