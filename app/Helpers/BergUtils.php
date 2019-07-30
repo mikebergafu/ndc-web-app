@@ -4,6 +4,8 @@
 namespace App\Helpers;
 
 
+use Illuminate\Support\Facades\DB;
+
 class BergUtils
 {
 
@@ -50,7 +52,12 @@ class BergUtils
     }
 
     public static function getUserPermissions($user_id){
-        $perms
+        $perms = DB::table('permissions')
+            ->leftJoin('permission_role', 'permissions.id', 'permission_role.permission_id')
+            ->leftJoin('role_user', 'permission_role.role_id', 'role_user.role_id')->where('user_id',$user_id)
+            ->get();
+
+        return $perms;
     }
 
 }

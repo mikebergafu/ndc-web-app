@@ -24,8 +24,13 @@ class LoginController extends Controller
             return BergUtils::return_types(401,'Invalid Email or Password');
         }
 
+        $user =array(
+            'bio_details'=>auth('api')->user(),
+            'permissions'=>BergUtils::getUserPermissions(auth('api')->user()->id)
+        );
+
         $data = array(
-            'user'=> auth('api')->user(),
+            'user'=> $user,
             'token' => $token,
             'type' => 'bearer', // you can ommit this
             'expires' => auth('api')->factory()->getTTL() * 60, // time to expiration
